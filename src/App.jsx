@@ -1,4 +1,4 @@
-import CurrenciesList from './components/table/ExchangeRateTable'
+import Exchange from './components/exchage/Exchange'
 import './App.css'
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      
+      <Exchange/>
     </>
   )
 }

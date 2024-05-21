@@ -7,13 +7,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
-
+import './ExchangeRateTable.css';
 const ExchangeRateTable = ({ exchangeRates }) => {
     console.log("in exchange table", exchangeRates);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
-    const handleChangePage = (event,newPage) => {
+    const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
 
@@ -23,39 +23,43 @@ const ExchangeRateTable = ({ exchangeRates }) => {
     };
 
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Base</TableCell>
-                            <TableCell>Target</TableCell>
-                            <TableCell>Exchange-Rate</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                         {exchangeRates && exchangeRates.conversion_rates && Object.keys(exchangeRates.conversion_rates)
-                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map(target => (
-                            <TableRow key={target}>
-                                <TableCell>{exchangeRates.base_code}</TableCell>
-                                <TableCell>{target}</TableCell>
-                                <TableCell>{exchangeRates.conversion_rates[target]}</TableCell>
+        <div className='table'>
+            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                <TableContainer sx={{ maxHeight: 440 }}>
+                    <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell><b>Base</b></TableCell>
+                                <TableCell><b>Target</b></TableCell>
+                                <TableCell><b>Exchange-Rate</b></TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={exchangeRates && exchangeRates.conversion_rates ? Object.keys(exchangeRates.conversion_rates).length:0}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-        </Paper>
+                        </TableHead>
+                        <TableBody>
+                            {exchangeRates && exchangeRates.conversion_rates && Object.keys(exchangeRates.conversion_rates)
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map(target => (
+                                    <TableRow hover role="checkbox" tabIndex={-1} align="center" key={target}>
+                                        <TableCell>{exchangeRates.base_code}</TableCell>
+                                        <TableCell><img className='flag' src={`https://www.xe.com/svgs/flags/${target.toLowerCase()}.static.svg`}></img>
+                                        {target}
+                                        </TableCell>
+                                        <TableCell>{exchangeRates.conversion_rates[target]}</TableCell>
+                                    </TableRow>
+                                ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[10, 25, 100]}
+                    component="div"
+                    count={exchangeRates && exchangeRates.conversion_rates ? Object.keys(exchangeRates.conversion_rates).length : 0}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+            </Paper>
+        </div>
     );
 };
 

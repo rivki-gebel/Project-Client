@@ -4,7 +4,7 @@ import '@fontsource/inter';
 import Select, { selectClasses } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-
+import './CurrenciesSelect.css';
 const CurrenciesSelect=( {selectedCurrency,onCurrencyChange}) => {
 
     const [currencies, setCurrencies] = useState([]);
@@ -26,8 +26,8 @@ const CurrenciesSelect=( {selectedCurrency,onCurrencyChange}) => {
     };
  
     return (
-        <Select onChange={(event) => handleCurrencyChange(event.target.textContent)}
-            variant="solid"
+        <Select  className="select" onChange={(event) => handleCurrencyChange(event.target.textContent)}
+            // variant="solid"
             placeholder="USD"
             indicator={<KeyboardArrowDown />}
             sx={{
@@ -41,7 +41,7 @@ const CurrenciesSelect=( {selectedCurrency,onCurrencyChange}) => {
             }}
         >
             {currencies.map(currency => (
-                <Option value={currency} key={currency}>{currency[0]}</Option>
+                <Option value={currency[0]} key={currency[0]}>{currency[0]}</Option>
             )) }
         </Select>
 

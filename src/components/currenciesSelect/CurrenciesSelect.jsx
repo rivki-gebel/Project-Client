@@ -5,7 +5,7 @@ import Select, { selectClasses } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
-function CurrenciesSelect( {selectedCurrency,onCurrencyChange})  {
+const CurrenciesSelect=( {selectedCurrency,onCurrencyChange}) => {
 
     const [currencies, setCurrencies] = useState([]);
     useEffect(() => {
@@ -22,15 +22,13 @@ function CurrenciesSelect( {selectedCurrency,onCurrencyChange})  {
     }, []);
 
     const handleCurrencyChange = (value) => {
-        
-        console.log("in handle currency change",value)
         onCurrencyChange(value);
     };
  
     return (
-        <Select  onChange={(event) => handleCurrencyChange(event.target.textContent)}
-            variant="soft"
-            placeholder="Select a currency"
+        <Select onChange={(event) => handleCurrencyChange(event.target.textContent)}
+            variant="solid"
+            placeholder="USD"
             indicator={<KeyboardArrowDown />}
             sx={{
                 width: 240,

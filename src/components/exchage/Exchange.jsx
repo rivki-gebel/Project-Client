@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ExchangeService from '../../services/ExchangeService';
 import CurrenciesSelect from '../currenciesSelect/CurrenciesSelect';
-// import ExchangeRateTable from '../table/ExchangeRateTable';
+import ExchangeRateTable from '../table/ExchangeRateTable';
 
 const Exchange = () => {
     const [selectedCurrency, setSelectedCurrency] = useState('USD');
@@ -22,8 +22,7 @@ const Exchange = () => {
     };
 
     const handleCurrencyChange = (currency) => {
-        console.log("in handle parent",currency)
-        setSelectedCurrency(currency);
+       setSelectedCurrency(currency);
     };
 
     return (
@@ -32,7 +31,7 @@ const Exchange = () => {
                 selectedCurrency={selectedCurrency}
                 onCurrencyChange={handleCurrencyChange}
             />
-            {/* <ExchangeRateTable exchangeRates={exchangeRates} /> */}
+            <ExchangeRateTable exchangeRates={exchangeRates} />
         </div>
     );
 };

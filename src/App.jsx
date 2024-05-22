@@ -1,4 +1,4 @@
-import Exchange from './components/exchage/Exchange'
+import Exchange from './components/exchange/Exchange'
 import './App.css'
 
 function App() {

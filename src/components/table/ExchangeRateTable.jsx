@@ -1,107 +1,63 @@
-import React, { useMemo } from 'react';
-import { useTable, useSortBy, usePagination } from '@tanstack/react-table';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@mui/material';
+import { useReactTable, flexRender, getCoreRowModel } from '@tanstack/react-table'
+import { useMemo } from 'react';
 
 const ExchangeRateTable = ({ exchangeRates }) => {
+       
     const data = useMemo(() => {
-        if (!exchangeRates || !exchangeRates.conversion_rates) return [];
-        return Object.keys(exchangeRates.conversion_rates).map(target => ({
+        return Object.entries(exchangeRates.conversion_rates).map(([target, rate]) => ({
             base: exchangeRates.base_code,
             target,
-            rate: exchangeRates.conversion_rates[target]
+            rate
         }));
     }, [exchangeRates]);
 
-    const columns = useMemo(() => [
+    const columns = [
         {
-            Header: 'Base',
-            accessor: 'base'
+            header: 'Base',
+            accessorKey: 'base'
         },
         {
-            Header: 'Target',
-            accessor: 'target'
+            header: 'Target',
+            accessorKey: 'target'
         },
         {
-            Header: 'Exchange Rate',
-            accessor: 'rate'
+            header: 'Rate',
+            accessorKey: 'rate'
         }
-    ], []);
+    ]
 
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        prepareRow,
-        page,
-        canPreviousPage,
-        canNextPage,
-        // pageOptions,
-        // pageCount,
-        gotoPage,
-        nextPage,
-        previousPage,
-        setPageSize,
-        state: { pageIndex, pageSize }
-    } = useTable({
-        columns,
-        data,
-        initialState: { pageIndex: 0, pageSize: 10 }
-    }, useSortBy, usePagination);
+    const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() });
 
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
-                <Table stickyHeader {...getTableProps()} aria-label="sticky table">
-                    <TableHead>
-                        {headerGroups.map(headerGroup => (
-                            <TableRow {...headerGroup.getHeaderGroupProps()}>
-                                {headerGroup.headers.map(column => (
-                                    <TableCell {...column.getHeaderProps(column.getSortByToggleProps())}>
-                                        {column.render('Header')}
-                                        <span>
-                                            {column.isSorted
-                                                ? column.isSortedDesc
-                                                    ? ' 🔽'
-                                                    : ' 🔼'
-                                                : ''}
-                                        </span>
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        ))}
-                    </TableHead>
-                    <TableBody {...getTableBodyProps()}>
-                        {page.map(row => {
-                            prepareRow(row);
-                            return (
-                                <TableRow {...row.getRowProps()}>
-                                    {row.cells.map(cell => (
-                                        <TableCell {...cell.getCellProps()}>
-                                            {cell.render('Cell')}
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={data.length}
-                rowsPerPage={pageSize}
-                page={pageIndex}
-                onPageChange={(event, newPage) => gotoPage(newPage)}
-                onRowsPerPageChange={event => {
-                    setPageSize(Number(event.target.value));
-                    gotoPage(0);
-                }}
-                nextIconButtonProps={{ onClick: nextPage, disabled: !canNextPage }}
-                backIconButtonProps={{ onClick: previousPage, disabled: !canPreviousPage }}
-            />
-        </Paper>
-    );
-};
+        <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+            <table>
+                <thead>
+                      {table.getHeaderGroups().map(headerGroup => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map(header => (
+                                <th key={header.id}>
+                                    {flexRender(header.column.columnDef.header, header.getContext())}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>                           
 
-export default ExchangeRateTable;
+                <tbody>
+                    {table.getRowModel().rows.map(row => (
+                        <tr key={row.id}>
+                                {row.getVisibleCells().map(cell => (
+                                <td key={cell.id}>
+                                    {console.log("cell",flexRender(cell.column.columnDef.cell, cell.getContext()))}                                    
+                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+
+                </tbody>
+            </table>
+        </div>
+    )
+};
+export default ExchangeRateTable                 

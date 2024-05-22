@@ -4,7 +4,7 @@ import '@fontsource/inter';
 import Select, { selectClasses } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-import './CurrenciesSelect.css';
+
 const CurrenciesSelect=( {selectedCurrency,onCurrencyChange}) => {
 
     const [currencies, setCurrencies] = useState([]);

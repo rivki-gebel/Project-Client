@@ -11,8 +11,10 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import './ExchangeRateTable.css';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { Typography } from '@mui/material';
+import './ExchangeRateTable.css';
+
 const ExchangeRateTable = ({ exchangeRates }) => {
 
     const [sorting, setSorting] = useState([]);
@@ -72,6 +74,8 @@ const ExchangeRateTable = ({ exchangeRates }) => {
 
     return (
         <>
+            <img src=""></img>
+
             <div className="w3-container" style={{ width: '100%', maxHeight: '400px' }}>
                 {/* <input type="text" value={filtering} onChange={(e) => setFiltering(e.target.value)}></input> */}
                 <table className="w3-table-all w3-centered">
@@ -79,9 +83,11 @@ const ExchangeRateTable = ({ exchangeRates }) => {
                         {table.getHeaderGroups().map(headerGroup => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map(header => (
-                                    <th key={header.id} onClick={header.column.getToggleSortingHandler()}>
+                                    <th key={header.id} >
                                         {flexRender(header.column.columnDef.header, header.getContext())}
-                                        {{ asc: ' -asc', desc: ' -desc' }[header.column.getIsSorted() ?? null]}
+                                        {console.log("header",header.column.columnDef.header)}
+                                        {header.column.columnDef.header !== 'Base' && header.column.getCanSort() && <SwapVertIcon onClick={header.column.getToggleSortingHandler()}
+                                        style={{ verticalAlign: 'middle',cursor: 'pointer' }} /> }
                                     </th>
                                 ))}
                             </tr>
@@ -93,7 +99,7 @@ const ExchangeRateTable = ({ exchangeRates }) => {
                             <tr key={row.id}>
                                 {row.getVisibleCells().map(cell => (
                                     <td key={cell.id}>
-                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </td>
                                 ))}
                             </tr>
@@ -116,6 +122,8 @@ const ExchangeRateTable = ({ exchangeRates }) => {
                     </Button>
                 </ButtonGroup>
             </div>
+
+
         </>
 
     )

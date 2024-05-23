@@ -17,9 +17,12 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Exchange />
-      </ThemeProvider>
+      <div className='app'>
+        <ThemeProvider theme={theme}>
+          <Exchange />
+        </ThemeProvider>
+      </div>
+
     </>
   )
 }

@@ -29,7 +29,7 @@ const Exchange = () => {
     };
 
     return (
-        <div style={{display: 'flex',flexDirection: 'column',alignItems: 'center', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '30%' }}>
+        <div style={{scrollSnapType: 'y mandatory',display: 'flex',flexDirection: 'column',alignItems: 'center', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '30%' }}>
         <CurrenciesSelect
             selectedCurrency={selectedCurrency}
             onCurrencyChange={handleCurrencyChange}

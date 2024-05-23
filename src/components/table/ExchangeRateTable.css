@@ -1,28 +1,42 @@
-/* עיצוב כללי לטבלה */
-.w3-table-all {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px auto;
-  }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 7% auto;
   
-  /* כותרת הטבלה */
-  .w3-table-all th {
-    background-color: #0a223b;
-    color: white;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  /* גוף הטבלה */
-  .w3-table-all td {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border: none;
-    text-align: center;
-  }
- 
-  .pageNumber{
-    color: rgb(179, 174, 174);
-    margin-top: 25%;
-    margin-bottom: 2%;
-  }
+}
+
+.table-header {
+  background-color: #0b2d50;
+  color: white;
+  text-align: center;
+}
+
+tbody {
+  background-color: rgba(204, 204, 204, 0.5);
+  color: white;
+}
+
+td, th {
+  font-family: 'Open Sans', sans-serif; /* Replace with your preferred font family */
+  font-size: 14px; /* Adjust font size as needed */
+  line-height: 1.6; /* Adjust line height for better spacing */
+  letter-spacing: 0.5px; /* Add subtle letter spacing for improved readability */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+}
+
+.pagination {
+  width: 100%;
+  margin-top: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.pageNumber {
+  color: rgb(179, 174, 174);
+  margin-left: 5%;
+  margin-right: 60%;
+}

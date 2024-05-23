@@ -5,7 +5,7 @@ import './App.css'
 let theme = createTheme({
   palette: {
     primary: {
-      main: '#607d8b',
+      main: '#FFFFFF',
     },
     secondary: {
       main: '#edf2ff',

@@ -33,7 +33,7 @@ const CurrenciesSelect = ({ selectedCurrency, onCurrencyChange }) => {
                 onChange={(event) => handleCurrencyChange(event.target.value)}
                 input={<OutlinedInput />}
                 inputProps={{ 'aria-label': 'Without label' }}
-                color='primary'
+                
             >
                 {currencies.map(currency => (
                     <MenuItem value={currency.code} key={currency.code}>

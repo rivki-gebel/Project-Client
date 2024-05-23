@@ -7,7 +7,7 @@
   
   /* כותרת הטבלה */
   .w3-table-all th {
-    background-color: #007bff;
+    background-color: #0a223b;
     color: white;
     padding: 10px;
     text-align: center;
@@ -20,49 +20,9 @@
     border: none;
     text-align: center;
   }
-  
-  /* תמונות הדגלים */
-  .flag {
-    vertical-align: middle;
+ 
+  .pageNumber{
+    color: rgb(179, 174, 174);
+    margin-top: 22%;
+    margin-bottom: 2%;
   }
-  
-  /* עיצוב כפתורי החצים */
-  .MuiIconButton-root {
-    background-color: #007bff;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 5px;
-    margin: 10px 5px;
-    cursor: pointer;
-  }
-  
-  .MuiIconButton-root:hover {
-    background-color: #0056b3;
-  }
-  
-  /* מספור עמודים */
-  .page-info {
-    font-size: 12px;
-    color: gray;
-    margin-top: 10px;
-    text-align: center;
-  }
-  
-  /* תיבת חיפוש */
-  .w3-container input[type="text"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 200px;
-    margin-bottom: 10px;
-  }
-  
-  /* אייקון חיפוש */
-  .w3-container i {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 5px;
-    color: gray;
-  }
-  

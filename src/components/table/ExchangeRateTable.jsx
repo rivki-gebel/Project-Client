@@ -7,11 +7,12 @@ import {
     getFilteredRowModel
 } from '@tanstack/react-table'
 import { useMemo, useState } from 'react';
-import ButtonGroup from '@mui/joy/ButtonGroup';
-import IconButton from '@mui/joy/IconButton';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import './ExchangeRateTable.css';
+import { Typography } from '@mui/material';
 const ExchangeRateTable = ({ exchangeRates }) => {
 
     const [sorting, setSorting] = useState([]);
@@ -72,7 +73,7 @@ const ExchangeRateTable = ({ exchangeRates }) => {
     return (
         <>
             <div className="w3-container" style={{ width: '100%', maxHeight: '400px' }}>
-                <input type="text" value={filtering} onChange={(e) => setFiltering(e.target.value)}></input>
+                {/* <input type="text" value={filtering} onChange={(e) => setFiltering(e.target.value)}></input> */}
                 <table className="w3-table-all w3-centered">
                     <thead>
                         {table.getHeaderGroups().map(headerGroup => (
@@ -92,8 +93,7 @@ const ExchangeRateTable = ({ exchangeRates }) => {
                             <tr key={row.id}>
                                 {row.getVisibleCells().map(cell => (
                                     <td key={cell.id}>
-                                        {console.log("cell", flexRender(cell.column.columnDef.cell, cell.getContext()))}
-                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </td>
                                 ))}
                             </tr>
@@ -103,15 +103,19 @@ const ExchangeRateTable = ({ exchangeRates }) => {
                 </table>
             </div>
 
-            <ButtonGroup aria-label="outlined primary button group">
-                <IconButton disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()} aria-label="back">
-                    <ArrowBackIcon />
-                </IconButton>
-                <IconButton disabled={!table.getCanNextPage()} onClick={() => table.nextPage()} aria-label="forward">
-                    <ArrowForwardIcon />
-                </IconButton>
-            </ButtonGroup>
-          
+            <div className='pageNumber'>
+                <Typography>{`Page ${table.getState().pagination.pageIndex + 1} of ${table.getPageCount()}`}</Typography>
+            </div>
+            <div className='paginator'>
+                <ButtonGroup color="primary" aria-label="Medium-sized button group">
+                    <Button disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()} aria-label="back">
+                        <ArrowBackIcon />
+                    </Button>
+                    <Button disabled={!table.getCanNextPage()} onClick={() => table.nextPage()} aria-label="forward">
+                        <ArrowForwardIcon />
+                    </Button>
+                </ButtonGroup>
+            </div>
         </>
 
     )

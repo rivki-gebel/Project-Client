@@ -1,0 +1,68 @@
+/* עיצוב כללי לטבלה */
+.w3-table-all {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+  }
+  
+  /* כותרת הטבלה */
+  .w3-table-all th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* גוף הטבלה */
+  .w3-table-all td {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border: none;
+    text-align: center;
+  }
+  
+  /* תמונות הדגלים */
+  .flag {
+    vertical-align: middle;
+  }
+  
+  /* עיצוב כפתורי החצים */
+  .MuiIconButton-root {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    margin: 10px 5px;
+    cursor: pointer;
+  }
+  
+  .MuiIconButton-root:hover {
+    background-color: #0056b3;
+  }
+  
+  /* מספור עמודים */
+  .page-info {
+    font-size: 12px;
+    color: gray;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  /* תיבת חיפוש */
+  .w3-container input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    margin-bottom: 10px;
+  }
+  
+  /* אייקון חיפוש */
+  .w3-container i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 5px;
+    color: gray;
+  }
+  

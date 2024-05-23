@@ -12,7 +12,7 @@ const CurrenciesSelect=( {selectedCurrency,onCurrencyChange}) => {
         CurrenciesService.fetchCurrencies()
             .then(data => {
                 const filteredCurrencies = data.filter(currency =>
-                    ["EUR", "ILS", "USD", "GBP", "CNY"].includes(currency[0])
+                    ["EUR", "ILS", "USD", "GBP", "CNY"].includes(currency.code)
                 );
                 setCurrencies(filteredCurrencies);
             })
@@ -41,8 +41,8 @@ const CurrenciesSelect=( {selectedCurrency,onCurrencyChange}) => {
             }}
         >
             {currencies.map(currency => (
-                <Option value={currency} key={currency}>{currency[0]}</Option>
-            )) }
+                <Option value={currency.code} key={currency.code}>{currency.code}</Option>
+            ))}
         </Select>
 
     );

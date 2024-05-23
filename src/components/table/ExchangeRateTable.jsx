@@ -9,12 +9,10 @@ import {
 import { useMemo, useState } from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
-import IconButton from '@mui/material/IconButton';
-import { Typography } from '@mui/material';
+import { InputBase, Typography } from '@mui/material';
 import './ExchangeRateTable.css';
 
 const ExchangeRateTable = ({ exchangeRates }) => {
@@ -76,21 +74,8 @@ const ExchangeRateTable = ({ exchangeRates }) => {
 
     return (
         <>
-            <div className="container" style={{ width: '100%', maxHeight: '400px' }}>
-                {/* <input type="text" value={filtering} onChange={(e) => setFiltering(e.target.value)}></input> */}
-                <Paper
-                    component="form"
-                    sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}>                
-                    <InputBase
-                        sx={{ ml: 1, flex: 1 }}
-                        placeholder="Search..."
-                        inputProps={{ 'aria-label': 'search google maps' }}
-                    />
-                    <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-                        <SearchIcon />
-                    </IconButton>
-
-                </Paper>
+           <div className="container" style={{ width: '100%', maxHeight: '400px' }}>
+                {/* <input type="text" value={filtering} onChange={(e) => setFiltering(e.target.value)}></input> */}                
                 <table className='table'>
                     <thead className='table-header'>
                         {table.getHeaderGroups().map(headerGroup => (
@@ -98,6 +83,7 @@ const ExchangeRateTable = ({ exchangeRates }) => {
                                 {headerGroup.headers.map(header => (
                                     <th key={header.id} >
                                         {flexRender(header.column.columnDef.header, header.getContext())}
+                                        {console.log("header", header.column.columnDef.header)}
                                         {header.column.columnDef.header !== 'Base' && header.column.getCanSort() && <SwapVertIcon onClick={header.column.getToggleSortingHandler()}
                                             style={{ verticalAlign: 'middle', cursor: 'pointer' }} />}
                                     </th>

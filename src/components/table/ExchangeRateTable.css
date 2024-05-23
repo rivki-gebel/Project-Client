@@ -1,4 +1,6 @@
-
+.container {
+ border-radius: 10px;
+}
 table {
   width: 100%;
   border-collapse: collapse;

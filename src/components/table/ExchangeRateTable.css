@@ -1,15 +1,16 @@
 .container {
  border-radius: 10px;
+ height: 100vh;
 }
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 7% auto;
+  /* margin: 7% auto; */
   
 }
 
 .table-header {
-  background-color: #0b2d50;
+  background-color: #03366a;
   color: white;
   text-align: center;
 }
@@ -20,10 +21,10 @@ tbody {
 }
 
 td, th {
-  font-family: 'Open Sans', sans-serif; /* Replace with your preferred font family */
-  font-size: 14px; /* Adjust font size as needed */
-  line-height: 1.6; /* Adjust line height for better spacing */
-  letter-spacing: 0.5px; /* Add subtle letter spacing for improved readability */
+  font-family: "Manrope", sans-serif; 
+  font-size: 14px; 
+  line-height: 1.6; 
+  letter-spacing: 0.5px; 
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 10px;
   text-align: center;
@@ -41,4 +42,14 @@ td, th {
   color: rgb(179, 174, 174);
   margin-left: 5%;
   margin-right: 60%;
+}
+.searchInput{
+  margin-bottom: 0%;
+}
+.noMatch{
+  display: block;
+  font-family: "Manrope", sans-serif; 
+  font-size: 14px; 
+  color: white;
+  text-align: center;
 }

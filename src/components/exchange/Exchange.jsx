@@ -4,11 +4,11 @@ import CurrenciesSelect from '../currenciesSelect/CurrenciesSelect';
 import ExchangeRateTable from '../table/ExchangeRateTable';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-
+import './Exchange.css';
 const Exchange = () => {
-    const [selectedCurrency, setSelectedCurrency] = useState('USD');
+    const [selectedCurrency, setSelectedCurrency] = useState("USD");
     const [exchangeRates, setExchangeRates] = useState({});
- 
+
     useEffect(() => {
         fetchExchangeRates(selectedCurrency);
     }, [selectedCurrency]);
@@ -28,9 +28,8 @@ const Exchange = () => {
     };
 
     return (
-        <>
-        {console.log("ex",exchangeRates)}
-            {Object.keys(exchangeRates).length === 0  ? (
+        <div className='exchangeContainer'>
+            {Object.keys(exchangeRates).length === 0 ? (
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                     <CircularProgress />
                 </Box>
@@ -43,7 +42,7 @@ const Exchange = () => {
                     <ExchangeRateTable exchangeRates={exchangeRates} />
                 </div>
             )}
-        </>
+        </div>
     );
 };
 

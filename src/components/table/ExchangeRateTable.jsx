@@ -12,15 +12,22 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-import { InputBase, Typography } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
+import SearchIcon from '@mui/icons-material/Search';
+import SearchOffIcon from '@mui/icons-material/SearchOff';
+import { Typography } from '@mui/material';
 import './ExchangeRateTable.css';
 
 const ExchangeRateTable = ({ exchangeRates }) => {
 
     const [sorting, setSorting] = useState([]);
     const [filtering, setFiltering] = useState('');
+
     const baseCode = exchangeRates.baseCode;
     const conversionRates = exchangeRates.conversionRates;
+
     const data = useMemo(() => {
         return conversionRates.map(rate => ({
             base: baseCode,
@@ -74,8 +81,14 @@ const ExchangeRateTable = ({ exchangeRates }) => {
 
     return (
         <>
-           <div className="container" style={{ width: '100%', maxHeight: '400px' }}>
-                {/* <input type="text" value={filtering} onChange={(e) => setFiltering(e.target.value)}></input> */}                
+            <div className="container" style={{ width: '100%', maxHeight: '400px' }}>
+                <Input className='searchInput' placeholder="Search..." value={filtering} onChange={(e) => setFiltering(e.target.value)}
+                    startAdornment={
+                        <InputAdornment position="start">
+                            <SearchIcon color='primary' />
+                        </InputAdornment>
+                    }
+                />
                 <table className='table'>
                     <thead className='table-header'>
                         {table.getHeaderGroups().map(headerGroup => (
@@ -83,7 +96,6 @@ const ExchangeRateTable = ({ exchangeRates }) => {
                                 {headerGroup.headers.map(header => (
                                     <th key={header.id} >
                                         {flexRender(header.column.columnDef.header, header.getContext())}
-                                        {console.log("header", header.column.columnDef.header)}
                                         {header.column.columnDef.header !== 'Base' && header.column.getCanSort() && <SwapVertIcon onClick={header.column.getToggleSortingHandler()}
                                             style={{ verticalAlign: 'middle', cursor: 'pointer' }} />}
                                     </th>
@@ -105,19 +117,35 @@ const ExchangeRateTable = ({ exchangeRates }) => {
 
                     </tbody>
                 </table>
+
+                {table.getRowModel().rows.length === 0 && (
+                    <Typography className='noMatch'>
+                        <SearchOffIcon color='primary' fontSize="small" style={{ marginRight: 5 }} />
+                        No match items found
+                    </Typography>
+                )}
             </div>
 
             <div className='pagination'>
+
                 <div className='pageNumber'>
                     <Typography>{`Page ${table.getState().pagination.pageIndex + 1} of ${table.getPageCount()}`}</Typography>
                 </div>
                 <ButtonGroup color="primary" aria-label="Medium-sized button group">
-                    <Button disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()} aria-label="back">
-                        <ArrowBackIcon />
-                    </Button>
-                    <Button disabled={!table.getCanNextPage()} onClick={() => table.nextPage()} aria-label="forward">
-                        <ArrowForwardIcon />
-                    </Button>
+                    <Tooltip title="Previous">
+                        <span>
+                            <Button disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()} aria-label="back">
+                                <ArrowBackIcon />
+                            </Button>
+                        </span>
+                    </Tooltip>
+                    <Tooltip title="Next">
+                        <span>
+                            <Button disabled={!table.getCanNextPage()} onClick={() => table.nextPage()} aria-label="forward">
+                                <ArrowForwardIcon />
+                            </Button>
+                        </span>
+                    </Tooltip>
                 </ButtonGroup>
 
             </div>

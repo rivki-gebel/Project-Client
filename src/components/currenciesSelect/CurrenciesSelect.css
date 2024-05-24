@@ -1,10 +1,10 @@
-.currencies-select{
-    /* border-color: white; */
+.currencies-select {
     margin-left: 0%;
     color: white;
-   margin-bottom: 10%;
-   background-color: white;
+    margin-bottom: 10%;
+    background-color: white;
 }
-FormControl{
+
+FormControl {
     height: 100vh;
 }

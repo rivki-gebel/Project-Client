@@ -42,6 +42,7 @@ td, th {
   color: rgb(179, 174, 174);
   margin-left: 5%;
   margin-right: 60%;
+  
 }
 .searchInput{
   margin-bottom: 0%;
@@ -52,4 +53,46 @@ td, th {
   font-size: 14px; 
   color: white;
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        height: auto;
+        max-height: none;
+    }
+
+    td, th {
+        padding: 6px;
+    }
+
+    .pagination {
+        margin-top: 5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .pageNumber {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        border-radius: 0;
+        height: 40vh;
+        overflow: auto; 
+        max-width: 100%;
+    }
+
+    td, th {
+        padding: 6px;
+    }
+
+    .pagination {
+        margin-top: 0;
+    }
+    
 }

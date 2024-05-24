@@ -127,7 +127,7 @@ const ExchangeRateTable = ({ exchangeRates }) => {
             </div>
 
             <div className='pagination'>
-
+                
                 <div className='pageNumber'>
                     <Typography>{`Page ${table.getState().pagination.pageIndex + 1} of ${table.getPageCount()}`}</Typography>
                 </div>

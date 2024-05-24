@@ -1,0 +1,11 @@
+html, body {
+    height: 100%;
+}
+html, body {
+    height: 100%;
+}
+.exchangeContainer {
+    height: 100vh; 
+    overflow-y: auto; 
+    top: 0;
+}

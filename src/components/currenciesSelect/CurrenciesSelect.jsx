@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import CurrenciesService from '../../services/CurrenciesService';
 import '@fontsource/inter';
-import Select, { selectClasses } from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-
-const CurrenciesSelect=( {selectedCurrency,onCurrencyChange}) => {
+import OutlinedInput from '@mui/material/OutlinedInput';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import './CurrenciesSelect.css';
+const CurrenciesSelect = ({ selectedCurrency, onCurrencyChange }) => {
 
     const [currencies, setCurrencies] = useState([]);
     useEffect(() => {
         CurrenciesService.fetchCurrencies()
             .then(data => {
                 const filteredCurrencies = data.filter(currency =>
-                    ["EUR", "ILS", "USD", "GBP", "CNY"].includes(currency[0])
+                    ["EUR", "ILS", "USD", "GBP", "CNY"].includes(currency.code)
                 );
                 setCurrencies(filteredCurrencies);
             })
@@ -24,27 +25,25 @@ const CurrenciesSelect=( {selectedCurrency,onCurrencyChange}) => {
     const handleCurrencyChange = (value) => {
         onCurrencyChange(value);
     };
- 
-    return (
-        <Select  className="select" onChange={(event) => handleCurrencyChange(event.target.textContent)}
-            // variant="solid"
-            placeholder="USD"
-            indicator={<KeyboardArrowDown />}
-            sx={{
-                width: 240,
-                [`& .${selectClasses.indicator}`]: {
-                    transition: '0.2s',
-                    [`&.${selectClasses.expanded}`]: {
-                        transform: 'rotate(-180deg)',
-                    },
-                },
-            }}
-        >
-            {currencies.map(currency => (
-                <Option value={currency[0]} key={currency[0]}>{currency[0]}</Option>
-            )) }
-        </Select>
 
+    return (
+
+        <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
+            <Select className='currencies-select'
+                value={selectedCurrency}
+                onChange={(event) => handleCurrencyChange(event.target.value)}
+                input={<OutlinedInput />}
+                inputProps={{ 'aria-label': 'Without label' }}
+                
+            >
+                {currencies.map(currency => (
+                    <MenuItem value={currency.code} key={currency.code}>
+                        <img src={`https://www.xe.com/svgs/flags/${currency.code.toLowerCase()}.static.svg`} alt="flag" style={{ marginRight: '5px', width: '20px', height: '20px' }} />
+                        {currency.code}
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
     );
 }
 

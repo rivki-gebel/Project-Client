@@ -96,8 +96,10 @@ const ExchangeRateTable = ({ exchangeRates }) => {
                                 {headerGroup.headers.map(header => (
                                     <th key={header.id} >
                                         {flexRender(header.column.columnDef.header, header.getContext())}
-                                        {header.column.columnDef.header !== 'Base' && header.column.getCanSort() && <SwapVertIcon onClick={header.column.getToggleSortingHandler()}
-                                            style={{ verticalAlign: 'middle', cursor: 'pointer' }} />}
+                                        {header.column.columnDef.header !== 'Base' && header.column.getCanSort() &&
+                                          <Tooltip title="Sort (Asc/Desc)">
+                                         <SwapVertIcon onClick={header.column.getToggleSortingHandler()}
+                                            style={{ verticalAlign: 'middle', cursor: 'pointer' }} /></Tooltip> }
                                     </th>
                                 ))}
                             </tr>
